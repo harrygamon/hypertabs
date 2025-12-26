@@ -151,9 +151,61 @@
         />
       </label>
       
-      <p class="info-text">
-        Keyboard shortcuts are configured in Chrome. Go to <code>chrome://extensions/shortcuts</code> to customize.
-      </p>
+      <div class="keybind-info">
+        <p class="info-text">
+          Keyboard shortcuts are configured in Chrome. 
+          <button class="link-btn" on:click={() => chrome.tabs.create({ url: 'chrome://extensions/shortcuts' })}>
+            Open Chrome Shortcuts Settings
+          </button>
+        </p>
+        
+        <div class="suggested-keybinds">
+          <h3>Suggested Keybinds</h3>
+          <p class="info-text">Chrome limits default shortcuts to 4. We suggest setting these manually:</p>
+          <table class="keybind-table">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Suggested Shortcut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Open HyperTabs</td>
+                <td><kbd>Ctrl+Shift+K</kbd> <span class="default-badge">default</span></td>
+              </tr>
+              <tr>
+                <td>Harpoon slot 1</td>
+                <td><kbd>Alt+1</kbd> <span class="default-badge">default</span></td>
+              </tr>
+              <tr>
+                <td>Harpoon slot 2</td>
+                <td><kbd>Alt+2</kbd> <span class="default-badge">default</span></td>
+              </tr>
+              <tr>
+                <td>Harpoon slot 3</td>
+                <td><kbd>Alt+3</kbd></td>
+              </tr>
+              <tr>
+                <td>Harpoon slot 4</td>
+                <td><kbd>Alt+4</kbd></td>
+              </tr>
+              <tr>
+                <td>Mark tab to Harpoon</td>
+                <td><kbd>Ctrl+Shift+M</kbd></td>
+              </tr>
+              <tr>
+                <td>Next workspace</td>
+                <td><kbd>Ctrl+Shift+]</kbd></td>
+              </tr>
+              <tr>
+                <td>Previous workspace</td>
+                <td><kbd>Ctrl+Shift+[</kbd></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
     <!-- Harpoon Section -->
@@ -374,6 +426,84 @@
     padding: 2px 6px;
     border-radius: 3px;
     font-family: monospace;
+  }
+
+  .link-btn {
+    background: none;
+    border: none;
+    color: #6366f1;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0;
+    text-decoration: none;
+  }
+
+  .link-btn:hover {
+    text-decoration: underline;
+  }
+
+  /* Keybind info section */
+  .keybind-info {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #2a2a4a;
+  }
+
+  .suggested-keybinds {
+    margin-top: 16px;
+  }
+
+  .suggested-keybinds h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #ccc;
+  }
+
+  .keybind-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  .keybind-table th,
+  .keybind-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #2a2a4a;
+  }
+
+  .keybind-table th {
+    color: #888;
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  .keybind-table td:last-child {
+    text-align: right;
+  }
+
+  kbd {
+    background-color: #16162a;
+    border: 1px solid #3a3a5a;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #eee;
+  }
+
+  .default-badge {
+    font-size: 9px;
+    background-color: #22c55e;
+    color: #000;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    text-transform: uppercase;
+    font-weight: 600;
   }
 
   /* Buttons */

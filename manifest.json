@@ -34,13 +34,6 @@
       },
       "description": "Open HyperTabs (Telescope)"
     },
-    "harpoon-mark": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+M",
-        "mac": "Command+Shift+M"
-      },
-      "description": "Mark current tab to Harpoon"
-    },
     "harpoon-1": {
       "suggested_key": {
         "default": "Alt+1",
@@ -56,31 +49,18 @@
       "description": "Jump to Harpoon slot 2"
     },
     "harpoon-3": {
-      "suggested_key": {
-        "default": "Alt+3",
-        "mac": "Alt+3"
-      },
       "description": "Jump to Harpoon slot 3"
     },
     "harpoon-4": {
-      "suggested_key": {
-        "default": "Alt+4",
-        "mac": "Alt+4"
-      },
       "description": "Jump to Harpoon slot 4"
     },
+    "harpoon-mark": {
+      "description": "Mark current tab to Harpoon"
+    },
     "workspace-next": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+]",
-        "mac": "Command+Shift+]"
-      },
       "description": "Switch to next workspace"
     },
     "workspace-prev": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+[",
-        "mac": "Command+Shift+["
-      },
       "description": "Switch to previous workspace"
     }
   }

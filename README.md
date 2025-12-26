@@ -61,15 +61,25 @@ npm run dev
 
 ## Keyboard Shortcuts
 
+### Default Shortcuts
 | Action | Shortcut |
 |--------|----------|
 | Open Telescope | `Ctrl+Shift+K` |
+| Jump to Harpoon slot 1 | `Alt+1` |
+| Jump to Harpoon slot 2 | `Alt+2` |
+
+### Suggested Shortcuts (set manually)
+Chrome limits extensions to 4 default shortcuts. You can add more at `chrome://extensions/shortcuts`:
+
+| Action | Suggested Shortcut |
+|--------|----------|
+| Jump to Harpoon slot 3 | `Alt+3` |
+| Jump to Harpoon slot 4 | `Alt+4` |
 | Mark tab to Harpoon | `Ctrl+Shift+M` |
-| Jump to Harpoon 1-4 | `Alt+1` through `Alt+4` |
 | Next workspace | `Ctrl+Shift+]` |
 | Previous workspace | `Ctrl+Shift+[` |
 
-*Customize shortcuts at `chrome://extensions/shortcuts`*
+*Customize all shortcuts at `chrome://extensions/shortcuts`*
 
 ## Search Prefixes
 
