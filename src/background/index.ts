@@ -15,7 +15,6 @@ import {
   jumpToSlot,
   removeFromSlot,
   getHarpoonState,
-  getSlotForUrl,
   syncWithTabs as syncHarpoonWithTabs,
 } from '../lib/harpoon';
 import {
@@ -26,13 +25,8 @@ import {
   switchToPrevWorkspace,
   syncWithTabs as syncWorkspacesWithTabs,
 } from '../lib/workspaces';
-import { switchToTab, createTab, getActiveTab, closeTab } from '../lib/tabs';
+import { switchToTab, createTab } from '../lib/tabs';
 import type { SearchResult } from '../lib/types';
-import type { KeybindAction } from '../lib/keybinds';
-
-// Track last active tab for "last tab" feature
-let lastActiveTabId: number | null = null;
-let currentActiveTabId: number | null = null;
 
 // =============================================================================
 // INITIALIZATION
@@ -322,16 +316,6 @@ async function handleMessage(
     }
     
     // =========================================================================
-    // KEYBIND ACTIONS (from content script)
-    // =========================================================================
-    
-    case 'KEYBIND_ACTION': {
-      const { action } = message.payload as { action: KeybindAction };
-      await handleKeybindAction(action);
-      return true;
-    }
-    
-    // =========================================================================
     // DEFAULT
     // =========================================================================
     
@@ -342,131 +326,8 @@ async function handleMessage(
 }
 
 // =============================================================================
-// KEYBIND ACTION HANDLER
-// =============================================================================
-
-/**
- * Handles actions triggered by keybinds from the content script
- */
-async function handleKeybindAction(action: KeybindAction): Promise<void> {
-  console.log('HyperTabs: Handling keybind action:', action);
-  
-  switch (action) {
-    case 'openHyperTabs':
-      // Open the popup by simulating the action click
-      // Note: Can't directly open popup from background, but we can open it in a new tab
-      // For now, we'll focus on the popup being opened via the action
-      chrome.action.openPopup?.() || 
-        chrome.windows.create({
-          url: chrome.runtime.getURL('src/popup/popup.html'),
-          type: 'popup',
-          width: 420,
-          height: 600,
-        });
-      break;
-      
-    case 'harpoonAdd': {
-      const slot = await markToNextAvailable();
-      if (slot) {
-        await updateContextMenus();
-        console.log(`HyperTabs: Added current tab to harpoon slot ${slot}`);
-      }
-      break;
-    }
-    
-    case 'harpoonRemove': {
-      const tab = await getActiveTab();
-      if (tab?.url) {
-        const slotNum = await getSlotForUrl(tab.url);
-        if (slotNum) {
-          await removeFromSlot(slotNum);
-          await updateContextMenus();
-          console.log(`HyperTabs: Removed tab from harpoon slot ${slotNum}`);
-        }
-      }
-      break;
-    }
-    
-    case 'harpoonList':
-      // Open popup focused on harpoon
-      chrome.action.openPopup?.() ||
-        chrome.windows.create({
-          url: chrome.runtime.getURL('src/popup/popup.html'),
-          type: 'popup',
-          width: 420,
-          height: 600,
-        });
-      break;
-      
-    case 'harpoon1':
-      await jumpToSlot(1);
-      break;
-      
-    case 'harpoon2':
-      await jumpToSlot(2);
-      break;
-      
-    case 'harpoon3':
-      await jumpToSlot(3);
-      break;
-      
-    case 'harpoon4':
-      await jumpToSlot(4);
-      break;
-      
-    case 'harpoon5':
-      await jumpToSlot(5);
-      break;
-      
-    case 'workspaceNext':
-      await switchToNextWorkspace();
-      break;
-      
-    case 'workspacePrev':
-      await switchToPrevWorkspace();
-      break;
-      
-    case 'workspaceList':
-      // Open popup focused on workspaces
-      chrome.action.openPopup?.() ||
-        chrome.windows.create({
-          url: chrome.runtime.getURL('src/popup/popup.html'),
-          type: 'popup',
-          width: 420,
-          height: 600,
-        });
-      break;
-      
-    case 'lastTab':
-      if (lastActiveTabId !== null) {
-        await switchToTab(lastActiveTabId);
-      }
-      break;
-      
-    case 'closeTab': {
-      const tab = await getActiveTab();
-      if (tab?.id) {
-        await closeTab(tab.id);
-      }
-      break;
-    }
-  }
-}
-
-// =============================================================================
 // TAB EVENT LISTENERS
 // =============================================================================
-
-/**
- * Track tab activation for "last tab" feature
- */
-chrome.tabs.onActivated.addListener((activeInfo) => {
-  // Store the previous active tab
-  if (currentActiveTabId !== null && currentActiveTabId !== activeInfo.tabId) {
-    lastActiveTabId = currentActiveTabId;
-  }
-  currentActiveTabId = activeInfo.tabId;
-});
 
 /**
  * Listen for tab updates to keep harpoon state in sync
@@ -481,18 +342,12 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 });
 
 /**
- * Listen for tab removal to update harpoon state
+ * Listen for tab removal
  * Note: We don't automatically remove from harpoon when tab is closed
  * because the URL is saved for reopening
  */
 chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
-  // Clear from last tab tracking if needed
-  if (lastActiveTabId === tabId) {
-    lastActiveTabId = null;
-  }
-  if (currentActiveTabId === tabId) {
-    currentActiveTabId = null;
-  }
+  // Tab removed - harpoon keeps the URL for reopening
 });
 
 // =============================================================================

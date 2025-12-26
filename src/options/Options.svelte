@@ -160,83 +160,13 @@
         </p>
         
         <div class="suggested-keybinds">
-          <h3>Vim-Style Keybinds (Leader Key)</h3>
-          <p class="info-text">
-            HyperTabs uses <kbd>Space</kbd> as a leader key, like Neovim. 
-            These work on any webpage automatically:
-          </p>
+          <h3>Keyboard Shortcuts</h3>
+          <p class="info-text">Default shortcuts (can be customized in Chrome settings):</p>
           <table class="keybind-table">
             <thead>
               <tr>
                 <th>Action</th>
-                <th>Keybind</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="keybind-category">
-                <td colspan="2">Core</td>
-              </tr>
-              <tr>
-                <td>Open HyperTabs</td>
-                <td><kbd>SPC</kbd> <kbd>SPC</kbd></td>
-              </tr>
-              <tr>
-                <td>Switch to last tab</td>
-                <td><kbd>SPC</kbd> <kbd>l</kbd></td>
-              </tr>
-              <tr>
-                <td>Close current tab</td>
-                <td><kbd>SPC</kbd> <kbd>x</kbd></td>
-              </tr>
-              <tr class="keybind-category">
-                <td colspan="2">Harpoon</td>
-              </tr>
-              <tr>
-                <td>Add to Harpoon</td>
-                <td><kbd>SPC</kbd> <kbd>h</kbd> <kbd>a</kbd></td>
-              </tr>
-              <tr>
-                <td>Remove from Harpoon</td>
-                <td><kbd>SPC</kbd> <kbd>h</kbd> <kbd>r</kbd></td>
-              </tr>
-              <tr>
-                <td>Open Harpoon list</td>
-                <td><kbd>SPC</kbd> <kbd>h</kbd> <kbd>o</kbd></td>
-              </tr>
-              <tr>
-                <td>Jump to slot 1-5</td>
-                <td><kbd>SPC</kbd> <kbd>1</kbd> - <kbd>5</kbd></td>
-              </tr>
-              <tr class="keybind-category">
-                <td colspan="2">Workspaces</td>
-              </tr>
-              <tr>
-                <td>Next workspace</td>
-                <td><kbd>SPC</kbd> <kbd>w</kbd> <kbd>n</kbd></td>
-              </tr>
-              <tr>
-                <td>Previous workspace</td>
-                <td><kbd>SPC</kbd> <kbd>w</kbd> <kbd>p</kbd></td>
-              </tr>
-              <tr>
-                <td>Workspace list</td>
-                <td><kbd>SPC</kbd> <kbd>w</kbd> <kbd>o</kbd></td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="info-text" style="margin-top: 16px;">
-            A visual indicator appears in the corner when you start a sequence.
-          </p>
-        </div>
-        
-        <div class="suggested-keybinds" style="margin-top: 20px;">
-          <h3>Chrome Shortcuts (Optional)</h3>
-          <p class="info-text">You can also set traditional shortcuts in Chrome:</p>
-          <table class="keybind-table">
-            <thead>
-              <tr>
-                <th>Action</th>
-                <th>Suggested</th>
+                <th>Shortcut</th>
               </tr>
             </thead>
             <tbody>
@@ -251,6 +181,62 @@
               <tr>
                 <td>Harpoon slot 2</td>
                 <td><kbd>Alt+2</kbd> <span class="default-badge">default</span></td>
+              </tr>
+              <tr>
+                <td>Harpoon slot 3</td>
+                <td><kbd>Alt+3</kbd></td>
+              </tr>
+              <tr>
+                <td>Harpoon slot 4</td>
+                <td><kbd>Alt+4</kbd></td>
+              </tr>
+              <tr>
+                <td>Mark to Harpoon</td>
+                <td><kbd>Ctrl+Shift+M</kbd></td>
+              </tr>
+              <tr>
+                <td>Next workspace</td>
+                <td><kbd>Ctrl+Shift+]</kbd></td>
+              </tr>
+              <tr>
+                <td>Prev workspace</td>
+                <td><kbd>Ctrl+Shift+[</kbd></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="info-text" style="margin-top: 16px;">
+            Chrome limits extensions to 4 default shortcuts. You can add more at 
+            <button class="link-btn" on:click={() => chrome.tabs.create({ url: 'chrome://extensions/shortcuts' })}>
+              chrome://extensions/shortcuts
+            </button>
+          </p>
+        </div>
+        
+        <div class="suggested-keybinds" style="margin-top: 20px;">
+          <h3>In-Popup Navigation</h3>
+          <table class="keybind-table">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Key</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Move down</td>
+                <td><kbd>↓</kbd> {settings.vimModeEnabled ? 'or' : ''} {settings.vimModeEnabled ? '<kbd>j</kbd>' : ''}</td>
+              </tr>
+              <tr>
+                <td>Move up</td>
+                <td><kbd>↑</kbd> {settings.vimModeEnabled ? 'or' : ''} {settings.vimModeEnabled ? '<kbd>k</kbd>' : ''}</td>
+              </tr>
+              <tr>
+                <td>Select/switch</td>
+                <td><kbd>Enter</kbd></td>
+              </tr>
+              <tr>
+                <td>Close popup</td>
+                <td><kbd>Esc</kbd></td>
               </tr>
             </tbody>
           </table>
@@ -556,14 +542,7 @@
     font-weight: 600;
   }
 
-  .keybind-category td {
-    font-weight: 600;
-    color: #6366f1;
-    font-size: 11px;
-    text-transform: uppercase;
-    padding-top: 16px !important;
-    border-bottom: none !important;
-  }
+
 
   /* Buttons */
   .button-row {
