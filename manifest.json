@@ -1,0 +1,87 @@
+{
+  "manifest_version": 3,
+  "name": "HyperTabs",
+  "description": "A privacy-first, keyboard-driven tab manager with Harpoon (quick access), Telescope (fuzzy search), and Workspaces",
+  "version": "0.1.0",
+  "icons": {
+    "16": "src/assets/icons/icon16.png",
+    "32": "src/assets/icons/icon32.png",
+    "48": "src/assets/icons/icon48.png",
+    "128": "src/assets/icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "HyperTabs"
+  },
+  "options_page": "src/options/options.html",
+  "background": {
+    "service_worker": "src/background/index.ts",
+    "type": "module"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "history",
+    "bookmarks",
+    "contextMenus",
+    "tabGroups"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K",
+        "mac": "Command+Shift+K"
+      },
+      "description": "Open HyperTabs (Telescope)"
+    },
+    "harpoon-mark": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "Command+Shift+M"
+      },
+      "description": "Mark current tab to Harpoon"
+    },
+    "harpoon-1": {
+      "suggested_key": {
+        "default": "Alt+1",
+        "mac": "Alt+1"
+      },
+      "description": "Jump to Harpoon slot 1"
+    },
+    "harpoon-2": {
+      "suggested_key": {
+        "default": "Alt+2",
+        "mac": "Alt+2"
+      },
+      "description": "Jump to Harpoon slot 2"
+    },
+    "harpoon-3": {
+      "suggested_key": {
+        "default": "Alt+3",
+        "mac": "Alt+3"
+      },
+      "description": "Jump to Harpoon slot 3"
+    },
+    "harpoon-4": {
+      "suggested_key": {
+        "default": "Alt+4",
+        "mac": "Alt+4"
+      },
+      "description": "Jump to Harpoon slot 4"
+    },
+    "workspace-next": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+]",
+        "mac": "Command+Shift+]"
+      },
+      "description": "Switch to next workspace"
+    },
+    "workspace-prev": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+[",
+        "mac": "Command+Shift+["
+      },
+      "description": "Switch to previous workspace"
+    }
+  }
+}
