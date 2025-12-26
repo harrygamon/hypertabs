@@ -52,23 +52,29 @@ Inspired by [Telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), 
 
 ## Keyboard Shortcuts
 
-### Default Shortcuts
-| Action | Shortcut |
-|--------|----------|
-| Open HyperTabs | `Ctrl+Shift+K` |
-| Jump to Harpoon slot 1 | `Alt+1` |
-| Jump to Harpoon slot 2 | `Alt+2` |
+HyperTabs uses a **leader key system** like Neovim. Press `Space` to start a command sequence.
 
-### Suggested Shortcuts
-Chrome limits extensions to 4 default shortcuts. Set these manually at `chrome://extensions/shortcuts`:
+### Core Commands
+| Action | Keybind |
+|--------|---------|
+| Open HyperTabs | `Space` `Space` |
+| Switch to last tab | `Space` `l` |
+| Close current tab | `Space` `x` |
 
-| Action | Suggested |
-|--------|-----------|
-| Jump to Harpoon slot 3 | `Alt+3` |
-| Jump to Harpoon slot 4 | `Alt+4` |
-| Mark tab to Harpoon | `Ctrl+Shift+M` |
-| Next workspace | `Ctrl+Shift+]` |
-| Previous workspace | `Ctrl+Shift+[` |
+### Harpoon Commands
+| Action | Keybind |
+|--------|---------|
+| Add tab to Harpoon | `Space` `h` `a` |
+| Remove from Harpoon | `Space` `h` `r` |
+| Open Harpoon list | `Space` `h` `o` |
+| Jump to slot 1-5 | `Space` `1` - `5` |
+
+### Workspace Commands
+| Action | Keybind |
+|--------|---------|
+| Next workspace | `Space` `w` `n` |
+| Previous workspace | `Space` `w` `p` |
+| Workspace list | `Space` `w` `o` |
 
 ### In-Popup Navigation
 | Action | Key |
@@ -84,6 +90,15 @@ Chrome limits extensions to 4 default shortcuts. Set these manually at `chrome:/
 | (none) | Open tabs |
 | `h:` | Browser history |
 | `b:` | Bookmarks |
+
+### Chrome Shortcuts (Alternative)
+You can also use traditional Chrome shortcuts. Set at `chrome://extensions/shortcuts`:
+
+| Action | Default |
+|--------|---------|
+| Open HyperTabs | `Ctrl+Shift+K` |
+| Harpoon slot 1 | `Alt+1` |
+| Harpoon slot 2 | `Alt+2` |
 
 ---
 
