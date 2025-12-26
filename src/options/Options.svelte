@@ -153,62 +153,69 @@
       
       <div class="keybind-info">
         <p class="info-text">
-          Keyboard shortcuts are configured in Chrome. 
-          <button class="link-btn" on:click={() => chrome.tabs.create({ url: 'chrome://extensions/shortcuts' })}>
-            Open Chrome Shortcuts Settings
-          </button>
+          Shortcuts are set in Chrome's extension settings. Click below to configure:
         </p>
+        <button class="btn primary open-shortcuts-btn" on:click={() => chrome.tabs.create({ url: 'chrome://extensions/shortcuts' })}>
+          Open Chrome Shortcuts Settings
+        </button>
         
-        <div class="suggested-keybinds">
-          <h3>Keyboard Shortcuts</h3>
-          <p class="info-text">Default shortcuts (can be customized in Chrome settings):</p>
-          <table class="keybind-table">
-            <thead>
-              <tr>
-                <th>Action</th>
-                <th>Shortcut</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Open HyperTabs</td>
-                <td><kbd>Ctrl+Shift+K</kbd> <span class="default-badge">default</span></td>
-              </tr>
-              <tr>
-                <td>Harpoon slot 1</td>
-                <td><kbd>Alt+1</kbd> <span class="default-badge">default</span></td>
-              </tr>
-              <tr>
-                <td>Harpoon slot 2</td>
-                <td><kbd>Alt+2</kbd> <span class="default-badge">default</span></td>
-              </tr>
-              <tr>
-                <td>Harpoon slot 3</td>
-                <td><kbd>Alt+3</kbd></td>
-              </tr>
-              <tr>
-                <td>Harpoon slot 4</td>
-                <td><kbd>Alt+4</kbd></td>
-              </tr>
-              <tr>
-                <td>Mark to Harpoon</td>
-                <td><kbd>Ctrl+Shift+M</kbd></td>
-              </tr>
-              <tr>
-                <td>Next workspace</td>
-                <td><kbd>Ctrl+Shift+]</kbd></td>
-              </tr>
-              <tr>
-                <td>Prev workspace</td>
-                <td><kbd>Ctrl+Shift+[</kbd></td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="info-text" style="margin-top: 16px;">
-            Chrome limits extensions to 4 default shortcuts. You can add more at 
-            <button class="link-btn" on:click={() => chrome.tabs.create({ url: 'chrome://extensions/shortcuts' })}>
-              chrome://extensions/shortcuts
-            </button>
+        <div class="shortcut-config">
+          <h3>Recommended Shortcuts</h3>
+          <p class="info-text">Copy these values into Chrome's shortcut settings:</p>
+          
+          <div class="shortcut-grid">
+            <div class="shortcut-item">
+              <label>Open HyperTabs</label>
+              <input type="text" readonly value="Ctrl+Shift+K" placeholder="Ctrl+Shift+K" class="shortcut-input has-default" />
+              <span class="shortcut-status default">default</span>
+            </div>
+            
+            <div class="shortcut-item">
+              <label>Harpoon slot 1</label>
+              <input type="text" readonly value="Alt+1" placeholder="Alt+1" class="shortcut-input has-default" />
+              <span class="shortcut-status default">default</span>
+            </div>
+            
+            <div class="shortcut-item">
+              <label>Harpoon slot 2</label>
+              <input type="text" readonly value="Alt+2" placeholder="Alt+2" class="shortcut-input has-default" />
+              <span class="shortcut-status default">default</span>
+            </div>
+            
+            <div class="shortcut-item">
+              <label>Harpoon slot 3</label>
+              <input type="text" readonly placeholder="Alt+3" class="shortcut-input" />
+              <span class="shortcut-status">not set</span>
+            </div>
+            
+            <div class="shortcut-item">
+              <label>Harpoon slot 4</label>
+              <input type="text" readonly placeholder="Alt+4" class="shortcut-input" />
+              <span class="shortcut-status">not set</span>
+            </div>
+            
+            <div class="shortcut-item">
+              <label>Mark to Harpoon</label>
+              <input type="text" readonly placeholder="Ctrl+Shift+M" class="shortcut-input" />
+              <span class="shortcut-status">not set</span>
+            </div>
+            
+            <div class="shortcut-item">
+              <label>Next workspace</label>
+              <input type="text" readonly placeholder="Ctrl+Shift+]" class="shortcut-input" />
+              <span class="shortcut-status">not set</span>
+            </div>
+            
+            <div class="shortcut-item">
+              <label>Prev workspace</label>
+              <input type="text" readonly placeholder="Ctrl+Shift+[" class="shortcut-input" />
+              <span class="shortcut-status">not set</span>
+            </div>
+          </div>
+          
+          <p class="info-text shortcut-note">
+            Chrome limits extensions to 4 default shortcuts. The placeholders show our recommended keys - 
+            copy them into Chrome's settings to enable.
           </p>
         </div>
         
@@ -542,7 +549,80 @@
     font-weight: 600;
   }
 
+  /* Shortcut config section */
+  .open-shortcuts-btn {
+    margin-top: 12px;
+    margin-bottom: 20px;
+  }
 
+  .shortcut-config {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #2a2a4a;
+  }
+
+  .shortcut-config h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #ccc;
+  }
+
+  .shortcut-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .shortcut-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .shortcut-item label {
+    font-size: 12px;
+    color: #888;
+  }
+
+  .shortcut-input {
+    background-color: #16162a;
+    border: 1px solid #3a3a5a;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: #888;
+    font-size: 13px;
+    font-family: monospace;
+    width: 100%;
+  }
+
+  .shortcut-input::placeholder {
+    color: #555;
+    font-style: italic;
+  }
+
+  .shortcut-input.has-default {
+    color: #eee;
+    border-color: #4a4a6a;
+  }
+
+  .shortcut-status {
+    font-size: 10px;
+    color: #666;
+  }
+
+  .shortcut-status.default {
+    color: #22c55e;
+  }
+
+  .shortcut-note {
+    margin-top: 16px;
+    padding: 12px;
+    background-color: #16162a;
+    border-radius: 6px;
+    border-left: 3px solid #6366f1;
+  }
 
   /* Buttons */
   .button-row {
