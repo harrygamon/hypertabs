@@ -1,29 +1,91 @@
 # HyperTabs
 
-A privacy-first, keyboard-driven Chrome tab manager combining the best ideas from Harpoon, Telescope, and Hyprland-style workspaces.
+**Hyprland-Style Tab Management for Power Users**
 
-## Features
+Transform your browsing with lightning-fast fuzzy search, quick-access harpoon slots, and workspace organization. Perfect for developers and keyboard enthusiasts who want to manage dozens of tabs effortlessly.
 
-### Harpoon (Quick Access Tabs)
-Mark your most important tabs to numbered slots for instant access:
-- **Alt+1** through **Alt+4** to jump to harpooned tabs instantly
-- Works across all windows
-- Tabs persist across browser sessions
-- Automatically reopens closed tabs from saved URLs
+Inspired by [Telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), [Harpoon](https://github.com/ThePrimeagen/harpoon), and [Hyprland](https://hyprland.org/).
 
-### Telescope (Fuzzy Search)
-Fast fuzzy search across all your tabs, history, and bookmarks:
-- **Ctrl+Shift+K** to open search
-- Type to fuzzy search open tabs
-- `h:` prefix to search history
-- `b:` prefix to search bookmarks
-- Vim-style navigation (optional)
+---
 
-### Workspaces (Coming Soon)
-Hyprland-style tab grouping:
-- Create virtual workspaces for different contexts
-- Switch workspaces to show/hide groups of tabs
-- Save and restore workspaces
+## Key Features
+
+### Instant Fuzzy Search (Telescope)
+- Search all open tabs by title or URL in milliseconds
+- Type `h:` to search browser history
+- Type `b:` to search bookmarks
+- Smart fuzzy matching with typo tolerance
+
+### Quick Access Tabs (Harpoon)
+- Pin important tabs to numbered slots (1-5)
+- Jump instantly with `Alt+1` through `Alt+4`
+- Persistent across browser sessions
+- Visual hook indicator shows harpooned tabs
+
+### Workspace Organization (Hyprland-style)
+- Group related tabs into workspaces
+- Switch contexts instantly - hide/show tab groups
+- Save window layouts as workspaces
+- Perfect for separating work, personal, and project tabs
+
+### Vim-Style Navigation (Optional)
+- Full keyboard control with `j`/`k` navigation
+- Toggle vim mode in settings
+- Arrow keys work by default for everyone
+
+### Privacy First
+- All data stays on your device
+- No tracking, analytics, or data collection
+- Open source with full transparency
+
+---
+
+## Quick Start
+
+1. **Open HyperTabs**: Press `Ctrl+Shift+K` or click the extension icon
+2. **Search tabs**: Start typing to filter your tabs
+3. **Navigate**: Use arrow keys (or `j`/`k` in vim mode)
+4. **Switch**: Press `Enter` to jump to your tab
+5. **Close**: Press `Escape`
+
+---
+
+## Keyboard Shortcuts
+
+### Default Shortcuts
+| Action | Shortcut |
+|--------|----------|
+| Open HyperTabs | `Ctrl+Shift+K` |
+| Jump to Harpoon slot 1 | `Alt+1` |
+| Jump to Harpoon slot 2 | `Alt+2` |
+
+### Suggested Shortcuts
+Chrome limits extensions to 4 default shortcuts. Set these manually at `chrome://extensions/shortcuts`:
+
+| Action | Suggested |
+|--------|-----------|
+| Jump to Harpoon slot 3 | `Alt+3` |
+| Jump to Harpoon slot 4 | `Alt+4` |
+| Mark tab to Harpoon | `Ctrl+Shift+M` |
+| Next workspace | `Ctrl+Shift+]` |
+| Previous workspace | `Ctrl+Shift+[` |
+
+### In-Popup Navigation
+| Action | Key |
+|--------|-----|
+| Move down | `↓` or `j` (vim mode) |
+| Move up | `↑` or `k` (vim mode) |
+| Select tab | `Enter` |
+| Close popup | `Escape` |
+
+### Search Prefixes
+| Prefix | Searches |
+|--------|----------|
+| (none) | Open tabs |
+| `h:` | Browser history |
+| `b:` | Bookmarks |
+
+---
 
 ## Installation
 
@@ -49,7 +111,7 @@ Hyprland-style tab grouping:
 
 4. Load in Chrome:
    - Open `chrome://extensions`
-   - Enable "Developer mode"
+   - Enable "Developer mode" (top right)
    - Click "Load unpacked"
    - Select the `dist` folder
 
@@ -59,51 +121,40 @@ Run in development mode with hot reload:
 npm run dev
 ```
 
-## Keyboard Shortcuts
+---
 
-### Default Shortcuts
-| Action | Shortcut |
-|--------|----------|
-| Open Telescope | `Ctrl+Shift+K` |
-| Jump to Harpoon slot 1 | `Alt+1` |
-| Jump to Harpoon slot 2 | `Alt+2` |
+## How It Works
 
-### Suggested Shortcuts (set manually)
-Chrome limits extensions to 4 default shortcuts. You can add more at `chrome://extensions/shortcuts`:
+### Harpoon System
+Mark your most important tabs for instant access:
+1. Right-click any page → HyperTabs → Add to Harpoon → Choose slot
+2. Press `Alt+1` to instantly jump back, even from another window
+3. If the tab was closed, it reopens automatically
 
-| Action | Suggested Shortcut |
-|--------|----------|
-| Jump to Harpoon slot 3 | `Alt+3` |
-| Jump to Harpoon slot 4 | `Alt+4` |
-| Mark tab to Harpoon | `Ctrl+Shift+M` |
-| Next workspace | `Ctrl+Shift+]` |
-| Previous workspace | `Ctrl+Shift+[` |
+### Workspaces
+Organize tabs into contexts:
+1. Click the `+` in the workspace bar to create a workspace
+2. Assign tabs via right-click context menu
+3. Switch workspaces to focus on one context at a time
+4. "All" view shows everything
 
-*Customize all shortcuts at `chrome://extensions/shortcuts`*
+### Telescope Search
+Find any tab instantly:
+1. Press `Ctrl+Shift+K` to open
+2. Type to fuzzy search titles and URLs
+3. Use `h:query` to search history
+4. Use `b:query` to search bookmarks
 
-## Search Prefixes
-
-| Prefix | Searches |
-|--------|----------|
-| (none) | Open tabs |
-| `h:` | Browser history |
-| `b:` | Bookmarks |
-
-## Privacy
-
-HyperTabs is designed with privacy in mind:
-- All data is stored locally using `chrome.storage.local`
-- No external servers or analytics
-- No tracking or telemetry
-- Open source - audit the code yourself
+---
 
 ## Tech Stack
 
-- **Svelte** - UI framework
+- **Svelte** - Lightweight UI framework
 - **TypeScript** - Type safety
-- **Vite** - Build tool
-- **CRXJS** - Chrome extension tooling
+- **Vite + CRXJS** - Fast builds with hot reload
 - **Fuse.js** - Fuzzy search
+
+---
 
 ## Contributing
 
@@ -113,9 +164,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
 
 MIT License - see [LICENSE](LICENSE) for details.
 
-## Acknowledgments
+---
 
-Inspired by:
-- [Harpoon](https://github.com/ThePrimeagen/harpoon) by ThePrimeagen
-- [Telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- [Hyprland](https://hyprland.org/) window manager
+**Perfect for developers, researchers, and anyone managing 10+ tabs daily.**
